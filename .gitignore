@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# PyCharm (keep run configs, exclude workspace-specific)
+.idea/workspace.xml
+.idea/shelf/
+.idea/dataSources/
+
+# Pytest
+.pytest_cache/
+
+# OS files
+Thumbs.db
+Desktop.ini
+test-plan.md
+test-report.md

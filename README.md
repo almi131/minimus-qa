@@ -29,11 +29,63 @@ runtime behavior against the reference Bitnami PostgreSQL image.
 
 ---
 
-## Quick Start
+## Run Instructions: How to set up and execute the test suite
 
-### 1. Clone / unzip the project
+### Set up
+
+1. **Clone the repository and go into the project folder:**
+   ```bash
+   git clone https://github.com/almi131/minimus-qa.git
+   cd minimus-qa
+   ```
+
+2. **Create a virtual environment and install dependencies:**
+
+   **Linux / macOS:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+   **Windows (PowerShell):**
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   pip install -r requirements.txt
+   ```
+
+   **Windows (Git Bash):**
+   ```bash
+   python -m venv .venv
+   source .venv/Scripts/activate
+   pip install -r requirements.txt
+   ```
+
+3. **Add the Bitnami Helm repo (one-time):**
+   ```bash
+   helm repo add bitnami https://charts.bitnami.com/bitnami
+   helm repo update
+   ```
+
+### Execute the test suite
+
+From the project root, with the virtual environment activated:
 
 ```bash
+pytest
+```
+
+This deploys the custom image via Helm, collects pod logs, runs all 4 tests, and cleans up. No extra arguments are required.
+
+---
+
+## Quick Start
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/almi131/minimus-qa.git
 cd minimus-qa
 ```
 
@@ -41,13 +93,17 @@ cd minimus-qa
 
 ```bash
 python -m venv .venv
+```
 
-# Linux / macOS
-source .venv/bin/activate
+Activate the virtual environment:
 
-# Windows (PowerShell)
-.\.venv\Scripts\Activate.ps1
+- **Linux / macOS:** `source .venv/bin/activate`
+- **Windows (PowerShell):** `.\.venv\Scripts\Activate.ps1`
+- **Windows (Git Bash):** `source .venv/Scripts/activate`
 
+Then install:
+
+```bash
 pip install -r requirements.txt
 ```
 
@@ -59,6 +115,8 @@ helm repo update
 ```
 
 ### 4. Run the tests
+
+From the project root (with venv activated):
 
 ```bash
 pytest
@@ -110,13 +168,3 @@ minimus-qa/
 3. The test runner is already configured to use **pytest**
 4. Right-click `test_helm_bugs.py` → **Run 'pytest in test_helm_bugs.py'**
    — or use the **"All Helm Bug Tests"** run configuration from the dropdown
-
----
-
-## Sharing this project (e.g. with an interviewer)
-
-**Option A — GitHub (recommended)**  
-Push the repo and send the repository URL. The interviewer can clone and run `pip install -r requirements.txt` then `pytest`. See below for one-time setup.
-
-**Option B — ZIP**  
-Zip the project folder but **exclude** `.venv/` and `__pycache__/` (they are in `.gitignore`). The recipient creates their own venv and runs the same steps as in Quick Start.
